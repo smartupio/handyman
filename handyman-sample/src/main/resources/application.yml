@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: handyman-sample
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    test:
+      path: /test/**
+      url: http://localhost:8080/routed
+  semaphore:
+    maxSemaphores: 1000
+  host:
+    connect-timeout-millis: 1000
+    socket-timeout-millis: 10000

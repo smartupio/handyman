@@ -17,6 +17,7 @@
         <module>handyman-core</module>
         <module>handyman-s3</module>        
         <module>handyman-zuul</module>
+        <module>handyman-sample</module>
     </modules>
 
 </project>
