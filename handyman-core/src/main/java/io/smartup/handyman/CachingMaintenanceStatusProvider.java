@@ -30,8 +30,12 @@ public class CachingMaintenanceStatusProvider implements MaintenanceStatusProvid
         if (cachedMaintenanceStatus == null) {
             synchronized (this) {
                 if (cachedMaintenanceStatus == null) {
-                    scheduler.scheduleAtFixedRate(new MaintenanceModeRefresher(),
-                            refreshFrequencyInMillis, refreshFrequencyInMillis, TimeUnit.MILLISECONDS);
+                    scheduler.scheduleAtFixedRate(
+                            () -> cachedMaintenanceStatus = origin.getStatus(),
+                            0,
+                            refreshFrequencyInMillis,
+                            TimeUnit.MILLISECONDS
+                    );
                 }
             }
 
@@ -41,11 +45,4 @@ public class CachingMaintenanceStatusProvider implements MaintenanceStatusProvid
         return cachedMaintenanceStatus;
     }
 
-    private class MaintenanceModeRefresher implements Runnable {
-
-        @Override
-        public void run() {
-            cachedMaintenanceStatus = origin.getStatus();
-        }
-    }
 }

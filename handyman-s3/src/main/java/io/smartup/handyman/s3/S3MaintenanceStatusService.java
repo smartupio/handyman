@@ -63,11 +63,11 @@ public class S3MaintenanceStatusService implements MaintenanceStatusManager, Mai
         }
     }
 
-    public Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public class Builder {
+    public static class Builder {
 
         private static final String DEFAULT_FILENAME = "maintenance_mode.json";
 
@@ -113,7 +113,7 @@ public class S3MaintenanceStatusService implements MaintenanceStatusManager, Mai
                 om = new ObjectMapper();
             }
 
-            return new S3MaintenanceStatusService(s3, bucketName, fileName, objectMapper);
+            return new S3MaintenanceStatusService(this.s3, this.bucketName, this.fileName, this.om);
         }
 
     }

@@ -2,7 +2,7 @@ package io.smartup.handyman;
 
 import io.smartup.handyman.model.MaintenanceStatus;
 
-public class InMemoryMaintenanceService implements MaintenanceStatusManager, MaintenanceStatusProvider {
+public class InMemoryMaintenanceStatusService implements MaintenanceStatusManager, MaintenanceStatusProvider {
 
     private MaintenanceStatus status;
 
