@@ -8,6 +8,7 @@
         <groupId>io.smartup.handyman</groupId>
         <artifactId>handyman-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../handyman-parent</relativePath>
     </parent>
 
     <artifactId>handyman-s3</artifactId>
@@ -21,7 +22,6 @@
         <dependency>
             <groupId>io.smartup.handyman</groupId>
             <artifactId>handyman-core</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <dependency>

@@ -5,25 +5,25 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.smartup.handyman.MaintenanceModeManager;
-import io.smartup.handyman.MaintenanceModeProvider;
+import io.smartup.handyman.MaintenanceStatusManager;
+import io.smartup.handyman.MaintenanceStatusProvider;
 import io.smartup.handyman.model.MaintenanceStatus;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SimpleS3MaintenanceModeService implements MaintenanceModeManager, MaintenanceModeProvider {
+public class S3MaintenanceStatusService implements MaintenanceStatusManager, MaintenanceStatusProvider {
 
     private final AmazonS3 s3;
     private final String bucketName;
     private final String fileName;
     private final ObjectMapper objectMapper;
 
-    private SimpleS3MaintenanceModeService(AmazonS3 s3,
-                                           String bucketName,
-                                           String fileName,
-                                           ObjectMapper objectMapper) {
+    private S3MaintenanceStatusService(AmazonS3 s3,
+                                       String bucketName,
+                                       String fileName,
+                                       ObjectMapper objectMapper) {
         this.s3 = s3;
         this.bucketName = bucketName;
         this.fileName = fileName;
@@ -53,6 +53,10 @@ public class SimpleS3MaintenanceModeService implements MaintenanceModeManager, M
 
             return ms;
         } catch (IOException e) {
+            if (!s3.doesObjectExist(bucketName, fileName)) {
+                return MaintenanceStatus.NO_MAINTENANCE_MAINTENANCE_STATUS;
+            }
+
             throw new IllegalArgumentException("Can not deserialize MaintenanceStatus from S3" +
                     " bucket=" + bucketName +
                     " key=" + fileName, e);
@@ -96,7 +100,7 @@ public class SimpleS3MaintenanceModeService implements MaintenanceModeManager, M
             return this;
         }
 
-        public SimpleS3MaintenanceModeService build() {
+        public S3MaintenanceStatusService build() {
             if (this.s3 == null) {
                 throw new IllegalStateException("AmazonS3 must be provided");
             }
@@ -109,7 +113,7 @@ public class SimpleS3MaintenanceModeService implements MaintenanceModeManager, M
                 om = new ObjectMapper();
             }
 
-            return new SimpleS3MaintenanceModeService(s3, bucketName, fileName, objectMapper);
+            return new S3MaintenanceStatusService(s3, bucketName, fileName, objectMapper);
         }
 
     }
