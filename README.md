@@ -37,7 +37,9 @@ Provided a delegate `MaintenanceStatusProvider` called origin it is going to cac
 
 You can provide the refresh interval, which defaults to 10 000 milliseconds.
 
-## S3 backend
+## Backends
+
+### S3 backend
 To use the S3 backend you'll have to build an `S3MaintenanceStatusService`. You can use the nested builder to do so.
 
 Example:
@@ -54,3 +56,12 @@ public S3MaintenanceStatusService s3Service() {
     }
 
 ```
+
+## Filters
+Filters allow you to short circuit the incoming request-response flow and quickly return [HTTP 503 (Service Unavailable)](
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503).
+
+**IMPORTANT** In servlet context each request is going to hit your filters, no matter your choice of tech(Java Servlet Filter, Spring Once-Per-Request, Zuul, etc), you most probably want to use the `CachingMaintenanceStatusProvider` to avoid making too many round trips to the flag providing backend.
+
+### Zuul Filter
+Contains `MaintenanceZuulFilter` which is a "pre" filter in Zuul terms. It's going to stop the filter chain and respond to the incoming request without routing to origin.
