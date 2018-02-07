@@ -11,14 +11,9 @@ import java.time.LocalDateTime;
 public class MaintenanceStatus {
 
     public static final MaintenanceStatus NO_MAINTENANCE_MAINTENANCE_STATUS =
-            new MaintenanceStatus()
-                    .setMode(MaintenanceMode.OFF)
-                    .setStartTime(LocalDateTime.MIN)
-                    .setEndTime(LocalDateTime.MAX);
+            new MaintenanceStatus().setMode(MaintenanceMode.OFF);
 
     private MaintenanceMode mode;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
 
     @Getter
     public enum MaintenanceMode {

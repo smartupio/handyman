@@ -1,11 +1,13 @@
 package io.smartup.handyman;
 
 import io.smartup.handyman.model.MaintenanceStatus;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class CachingMaintenanceStatusProvider implements MaintenanceStatusProvider {
 
     private final static long DEFAULT_REFRESH_FREQUENCY_IN_MILLIS = 10000;
@@ -30,19 +32,28 @@ public class CachingMaintenanceStatusProvider implements MaintenanceStatusProvid
         if (cachedMaintenanceStatus == null) {
             synchronized (this) {
                 if (cachedMaintenanceStatus == null) {
-                    scheduler.scheduleAtFixedRate(
-                            () -> cachedMaintenanceStatus = origin.getStatus(),
-                            0,
-                            refreshFrequencyInMillis,
-                            TimeUnit.MILLISECONDS
-                    );
+                    cachedMaintenanceStatus = MaintenanceStatus.NO_MAINTENANCE_MAINTENANCE_STATUS;
+
+                    scheduler.scheduleAtFixedRate(new CacheRefresher(), 0,
+                            refreshFrequencyInMillis, TimeUnit.MILLISECONDS);
                 }
             }
-
-            cachedMaintenanceStatus = origin.getStatus();
         }
 
         return cachedMaintenanceStatus;
+    }
+
+    private class CacheRefresher implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                cachedMaintenanceStatus = origin.getStatus();
+                log.debug("Refreshed status of maintenance = {}", cachedMaintenanceStatus);
+            } catch (Exception e) {
+                log.warn("Could not refresh maintenance status in cache", e);
+            }
+        }
     }
 
 }
