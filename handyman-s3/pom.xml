@@ -17,6 +17,7 @@
 
     <name>Handyman S3</name>
     <description>Amazon S3 backend as maintenance mode provider</description>
+    <url>https://github.com/smartupio/handyman</url>
 
     <developers>
         <developer>

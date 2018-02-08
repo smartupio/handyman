@@ -14,6 +14,7 @@
     <artifactId>handyman-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <url>https://github.com/smartupio/handyman</url>
 
     <name>Handyman Core</name>
     <description>Core API and models of Handyman lightweight maintenance management library</description>

@@ -11,6 +11,7 @@
 
     <name>Handyman Aggregator</name>
     <description>Aggregator project to build all modules of SmartUp Handyman</description>
+    <url>https://github.com/smartupio/handyman</url>
 
     <developers>
         <developer>
@@ -28,6 +29,11 @@
         </license>
     </licenses>
 
+    <scm>
+        <url>https://github.com/smartupio/content-service</url>
+        <connection>scm:git:git@github.com:smartupio/content-service.git</connection>
+    </scm>
+
     <modules>
         <module>handyman-parent</module>
         <module>handyman-core</module>
@@ -36,5 +42,16 @@
         <module>handyman-sample</module>
     </modules>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 

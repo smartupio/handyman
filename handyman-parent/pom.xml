@@ -11,6 +11,7 @@
 
     <name>Handyman Parent</name>
     <description>Parent maven module for easy dependency management</description>
+    <url>https://github.com/smartupio/handyman</url>
 
     <developers>
         <developer>
