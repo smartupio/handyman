@@ -16,7 +16,36 @@
     <packaging>jar</packaging>
 
     <name>Zuul</name>
-    <description>Handyman Zuul</description>
+    <description>Zuul filter to check the maintenance mode on each
+        request and short circuit if maintenance is enabled
+    </description>
+
+    <developers>
+        <developer>
+            <id>matelang</id>
+            <name>Mate Lang</name>
+            <email>mate@smartup.io</email>
+            <url>https://www.smartup.io</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>

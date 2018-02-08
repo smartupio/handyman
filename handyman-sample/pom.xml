@@ -15,8 +15,35 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Sample</name>
-    <description>Handyman Sample</description>
+    <name>Handyman Sample</name>
+    <description>Handyman sample code. Showcases some of the libraries capabilities</description>
+
+    <developers>
+        <developer>
+            <id>matelang</id>
+            <name>Mate Lang</name>
+            <email>mate@smartup.io</email>
+            <url>https://www.smartup.io</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
