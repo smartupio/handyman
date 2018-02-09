@@ -15,7 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Zuul</name>
+    <name>Handyman Zuul</name>
     <description>Zuul filter to check the maintenance mode on each
         request and short circuit if maintenance is enabled
     </description>
