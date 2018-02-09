@@ -10,15 +10,48 @@
     <packaging>pom</packaging>
 
     <name>Handyman Aggregator</name>
-    <description>SmartUp Handyman Aggregator</description>
+    <description>Aggregator project to build all modules of SmartUp Handyman</description>
+    <url>https://github.com/smartupio/handyman</url>
+
+    <developers>
+        <developer>
+            <id>matelang</id>
+            <name>Mate Lang</name>
+            <email>mate@smartup.io</email>
+            <url>https://www.smartup.io</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/smartupio/content-service</url>
+        <connection>scm:git:git@github.com:smartupio/content-service.git</connection>
+    </scm>
 
     <modules>
-    	<module>handyman-parent</module>
+        <module>handyman-parent</module>
         <module>handyman-core</module>
-        <module>handyman-s3</module>        
+        <module>handyman-s3</module>
         <module>handyman-zuul</module>
         <module>handyman-sample</module>
     </modules>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 

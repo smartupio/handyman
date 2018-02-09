@@ -5,6 +5,8 @@
 
 This project is meant to solve the simple problem of activating, inactivating and interrogating the status of a maintenance mode flag in a Java web application.
 
+[![Build Status](https://travis-ci.org/smartupio/handyman.svg?branch=master)](https://travis-ci.org/smartupio/handyman)
+
 ## Modules
 
 * handyman-core - core models and interfaces
