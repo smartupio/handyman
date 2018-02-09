@@ -6,7 +6,7 @@
 
     <groupId>io.smartup.handyman</groupId>
     <artifactId>handyman-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>Handyman Parent</name>
@@ -39,6 +39,11 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
+    <scm>
+        <url>https://github.com/smartupio/content-service</url>
+        <connection>scm:git:git@github.com:smartupio/content-service.git</connection>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
